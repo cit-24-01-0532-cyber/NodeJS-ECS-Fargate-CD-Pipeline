@@ -58,3 +58,11 @@ jobs:
         service: ${{ env.ECS_SERVICE }}
         cluster: ${{ env.ECS_CLUSTER }}
         wait-for-service-stability: true
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+      with:
+        task-definition: .aws/task-definition.json   # <-- ඔයාගේ path එක මෙතන නිවැරදිව තියෙන්න ඕනේ
+        service: <YOUR_ECS_SERVICE_NAME>
+        cluster: <YOUR_ECS_CLUSTER_NAME>
+        # 👇 මෙන්න මේ පේළිය අලුතින්ම එකතු කරන්න (ඔයාගේ Account ID එක දාලා)
+        execution-role-arn: arn:aws:iam::<275440672691>:role/ecs_task_execution_role
